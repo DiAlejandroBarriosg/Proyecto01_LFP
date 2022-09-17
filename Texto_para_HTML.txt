@@ -1,1 +1,377 @@
 
+
+Se sumarán: 
+
+ 4.5 + 5.32 = 9.82
+ 9.82 + 5.32 = 15.14
+ 15.14 + 30 = 45.14
+ 45.14
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 84.0 - 33.7 = 50.3
+ 50.3 - 100 = -49.7
+ -49.7
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Multiplicarán: 
+
+ 5.0 * 7 = 35.0
+ 35.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Dividirán: 
+
+ 45.0 / 9 = 5.0
+ 5.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Potenciará: 
+
+ 2.0 ^ 3 = 8.0
+ 8.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Sacará Raíz: 
+
+ Raíz de 9.0 = 3.0
+ 3.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Invertirá: 
+
+ 38 invert 97 = 23
+ 23
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará el Seno a: 
+
+ 5.0 = -0.9589242746631385
+ -0.9589242746631385 en Radianes
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará el Coseno a: 
+
+ 5.0 = 0.28366218546322625
+ 0.28366218546322625 en Radianes
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará la Tangente a: 
+
+ 5.0 = -3.380515006246586
+ -3.380515006246586 en Radianes
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará Modulo a: 
+
+ 7.0 % 2 = 1.0
+ 1.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 10.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 3 = 10.0
+ 10.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 10.0 + 10.0
+
+ EL RESULTADO FINAL ES: 20.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 7.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 2 = 9.0
+ 9.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 7.0 - 9.0
+
+ EL RESULTADO FINAL ES: -2.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 10.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 2 = 9.0
+ 9.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 10.0 - 9.0
+
+ EL RESULTADO FINAL ES: 1.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 5.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 38.0 + 7 = 45.0
+ 45.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 5.0 + 45.0
+
+ EL RESULTADO FINAL ES: 50.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+Finalizó la lectura
+
+Se sumarán: 
+
+ 4.5 + 5.32 = 9.82
+ 9.82 + 5.32 = 15.14
+ 15.14 + 30 = 45.14
+ 45.14
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 84.0 - 33.7 = 50.3
+ 50.3 - 100 = -49.7
+ -49.7
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Multiplicarán: 
+
+ 5.0 * 7 = 35.0
+ 35.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Dividirán: 
+
+ 45.0 / 9 = 5.0
+ 5.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Potenciará: 
+
+ 2.0 ^ 3 = 8.0
+ 8.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Sacará Raíz: 
+
+ Raíz de 9.0 = 3.0
+ 3.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Invertirá: 
+
+ 38 invert 97 = 23
+ 23
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará el Seno a: 
+
+ 5.0 = -0.9589242746631385
+ -0.9589242746631385 en Radianes
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará el Coseno a: 
+
+ 5.0 = 0.28366218546322625
+ 0.28366218546322625 en Radianes
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará la Tangente a: 
+
+ 5.0 = -3.380515006246586
+ -3.380515006246586 en Radianes
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sacará Modulo a: 
+
+ 7.0 % 2 = 1.0
+ 1.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 10.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 3 = 10.0
+ 10.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 10.0 + 10.0
+
+ EL RESULTADO FINAL ES: 20.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 7.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 2 = 9.0
+ 9.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 7.0 - 9.0
+
+ EL RESULTADO FINAL ES: -2.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 10.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 2 = 9.0
+ 9.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 10.0 - 9.0
+
+ EL RESULTADO FINAL ES: 1.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 5.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 38.0 + 7 = 45.0
+ 45.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 5.0 + 45.0
+
+ EL RESULTADO FINAL ES: 50.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+Finalizó la lectura

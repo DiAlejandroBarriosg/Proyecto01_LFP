@@ -2,13 +2,14 @@
 R.
 </Texto>
 <Funcion = ESCRIBIR>
+<Titulo> Operaciones </Titulo>
+<Descripcion> [TEXTO] </Descripcion>
+<Contenido> [TIPO] </Contenido>
 </Funcion>
 
 
 <Estilo>
-<Titulo Color=AZUL Tamanio=12/>
-<Descripcion Color=VERDE Tamanio=3/>
-<Contenido Color=GRIS Tamanio=3>
+<Titulo Color=AZUL Tamanio=16/>
 </Estilo>
 <Tipo>
 <Operacion= SUMA>
@@ -75,13 +76,16 @@ R.
 <Numero> 2 </Numero>
 </Operacion>
 </Operacion>
-<Operacion= RESTA>
+<Operacion= SUMA>
 <Numero> 5 </Numero>
-<Operacion= RESTA>
+<Operacion= SUMA>
 <Numero> 38 </Numero>
 <Numero> 7 </Numero>
 </Operacion>
 </Operacion>
 </Tipo>
+
+
+
 
 

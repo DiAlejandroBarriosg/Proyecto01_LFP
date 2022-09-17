@@ -9,6 +9,9 @@ from tkinter.filedialog import asksaveasfilename
 guardarArchivo = ''
 titulo = ''
 textoGuardado = ''
+colorTitulo = ''
+tamanioFuenteTitulo = 0
+
 
 
 class Principal:
@@ -62,6 +65,7 @@ class Principal:
         self.modulo2 = 0.0
         self.titulo = ''
         self.textoGuardado = ''
+        self.tamanioFuente = ''
 
     def ReiniciarContadores(self):
 
@@ -126,16 +130,11 @@ class Principal:
                         self.estado = 4
 
                     if juntar == '\n</Funcion>':
-                        print('Finaliza funcion')
+                        print('Finaliza lectura de Estilo')
                         print(f'{juntar}')
                         juntar = ''
                         self.estado = 1
 
-                    if juntar == '\n\n\n<Estilo':
-                        print('Esta es un Estilo')
-                        print(f'{juntar}')
-                        juntar = ''
-                        self.estado = 1
 
                     elif c == ' ':
                         juntar = ''
@@ -207,17 +206,17 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
-                        elif juntar == '<Estilo>':
-                            print('Esto es una etiqueta CONTENIDO')
-                            print(juntar)
-                            print(f'Esto es una etiqueta Estilo')
+                        elif juntar == '\n\n\n<Estilo>':
+                            print('Esta es un Estilo')
+                            print(f'{juntar}')
+                            juntar = ''
+                            self.estado = 4
+
+                        elif juntar == '\n</Estilo>':
+                            print('Finaliza la seleccion de estilos')
+                            print(f'{juntar}')
                             juntar = ''
                             self.estado = 1
-
-                        elif juntar == 'Color=':
-                            print('Se guardará el color para el titulo: ')
-                            juntar = ''
-                            self.estado = 2
 
 
 
@@ -2760,6 +2759,12 @@ class Principal:
                 elif self.estado == 4:
                     if str.isalpha(c):
                         self.estado = 4
+                    elif c == '<':
+                        self.estado = 4
+                        print('Abriendo etiqueta')
+                    elif c == '\n':
+                        self.estado = 4
+                        print('Salto de linea, se regrea a estado 4')
                     elif c == '.':
                         print(juntar)
                         print('Finaliza el texto')
@@ -2767,8 +2772,18 @@ class Principal:
                         self.textoGuardado = juntar
                         global textoGuardado
                         textoGuardado = self.textoGuardado
-
                         juntar = ''
+                        self.estado = 1
+                    elif c.isdecimal():
+                        global tamanioFuenteTitulo
+                        self.tamanioFuente += c
+                        tamanioFuenteTitulo = self.tamanioFuente
+                        juntar = ''
+
+                    if juntar == '/>':
+                        print('Cerrando parametros de estilo')
+                        juntar = ''
+                        self.tamanioFuente = ''
                         self.estado = 1
 
                     elif c == ' ':
@@ -2776,6 +2791,8 @@ class Principal:
                         # print('Espacio de Texto')
                         # juntar = ' '
                         self.estado = 4
+
+
                         if juntar == ' Operaciones ':
                             # print(juntar)
                             print('Titulo de OPERACIONES')
@@ -2793,32 +2810,46 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
+                        elif juntar == '\n<Titulo ':
+                            print('Estilo para titulo')
+                            print(f'{juntar}')
+                            juntar = ''
+                            self.estado = 4
+
                     elif c == '=':
-                        # print(juntar)
-                        # print('Espacio de Texto')
+                        if juntar == 'Color=':
+                            print('Seleccionando Color')
+                            juntar = ''
+                            self.estado = 4
+                        elif juntar == ' Tamanio=':
+                            print('Seleccionando tamaño de fuente')
+                            juntar = ''
+                            self.estado = 4
+
+
+
+                        # if juntar == '\n<Titulo Color=':
+                        #     print('Color para Titulo')
+                        #     juntar = '='
+                        #     self.estado = 4
+
+
+
+
+                    elif juntar == 'AZUL':
+                        print(f'COLOR PARA TITULO {juntar}')
+                        global colorTitulo
+                        colorTitulo = '#0000FF'
+                        juntar = ''
                         self.estado = 4
+
+
 
                     elif juntar == '\n<Funcion = ESCRIBIR>':
                         # print(juntar)
                         print('Esta es una funcion ESCRIBIR')
                         juntar = ''
                         self.estado = 1
-
-                    elif juntar == '\n<Titulo Color':
-                        # print(juntar)
-                        print('Esta es una funcion ESCRIBIR')
-                        juntar = ''
-                        self.estado = 1
-                        if c == '=':
-                            print('Esto es un color')
-                            self.estado = 4
-
-
-
-
-
-
-
 
 
                 if not c:
@@ -2842,23 +2873,34 @@ class Principal:
     def GenerarHTML(self):
         global titulo
         global textoGuardado
+        global colorTitulo
+        global tamanioFuenteTitulo
         fichero = open('Texto_para_HTML.txt', encoding='utf-8')
         Linea = ""
         htmlparte1 = "<html><head><title>"
         htmlparte2 = "</title></head><body>"
-        htmlh1 = "<h3>"
+        htmlh1 = '<h3>'
         htmlh2C = "</h3>"
-        htmlh3 = "<h1>"
+        # <h1 style="color:red;font-size:40px;">
+        htmlh3 = '<h1 style="color:'
+        tamaFuente = ";font-size: "
+        finaFuente = 'px;">'
         htmlh3C = "</h1>"
         iniParrafo = "<p>"
         cerraParrafo = "</p>"
         htmlparte3 = "</body></html>"
+
+
         documentohtml = ""
         lineas = fichero.readlines()
         documentohtml += htmlparte1
         documentohtml += titulo
         documentohtml += htmlparte2
         documentohtml += htmlh3
+        documentohtml += colorTitulo
+        documentohtml += tamaFuente
+        documentohtml += tamanioFuenteTitulo
+        documentohtml += finaFuente
         documentohtml += titulo
         documentohtml += htmlh3C
         documentohtml += htmlh1
@@ -2947,25 +2989,16 @@ my_text.pack(pady=20)
 
 my_text2 = Text(wrapper3, width=60, height=40, font=("Helvetica", 12))
 my_text2.pack(pady=20)
-# menu.mainMenu()
-# my_text.insert(END, guardarArchivo)
-# menu.mainMenu()
 btnAbrir = Button(wrapper2, text="  Abrir Archivo  ", bg='green3', command=abrir.Abrir)
 btnAbrir.pack(side=tk.TOP, padx=6, pady=15)
-btnGuardar = Button(wrapper2, text="Guardar Archivo", bg='#856ff8', command=html.GenerarHTML)
+btnGuardar = Button(wrapper2, text="Guardar cambios", bg='#856ff8', command=guardar.Guardar)
 btnGuardar.pack(side=tk.TOP, padx=6, pady=15)
 btnAnalizar = Button(wrapper2, text="Analizar Archivo", bg='orange2', command=analizar.lecturaPrueba2)
 btnAnalizar.pack(side=tk.TOP, padx=6, pady=15)
-btnErrores = Button(wrapper2, text=" Revisar Errores ", bg='red2', command=guardar2.Guardar2)
+btnErrores = Button(wrapper2, text="Guardar texto para HTML", bg='red2', command=guardar2.Guardar2)
 btnErrores.pack(side=tk.TOP, padx=6, pady=15)
-btnSalir = Button(wrapper2, text="Salir del programa", bg='yellow2', command=guardar.Guardar)
+btnSalir = Button(wrapper2, text="Generar HTML", bg='yellow2', command=html.GenerarHTML)
 btnSalir.pack(side=tk.TOP, padx=6, pady=15)
-
-
-        # lbl = Label(wrapper2, text="Eliminar curso por codigo")
-        # lbl.pack(side=tk.LEFT, padx=10)
-
-
 
 
 root.title("Ventana Principal Diego Barrios 20190018 LFP A+")
