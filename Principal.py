@@ -2898,9 +2898,9 @@ class Principal:
 
         my_text.insert(END, guardarArchivo)
 
-        btnAbrir = Button(wrapper2, text="  Abrir Archivo  ", bg='green3', command=abrir.Abrir)
+        btnAbrir = Button(wrapper2, text="  Abrir Archivo", bg='green3', command=abrir.Abrir)
         btnAbrir.pack(side=tk.TOP, padx=6, pady=15)
-        btnGuardar = Button(wrapper2, text="Guardar Caergergembios", bg='#856ff8', command=guardar1.Guardar)
+        btnGuardar = Button(wrapper2, text="Guardar Cambios", bg='#856ff8', command=guardar1.Guardar)
         btnGuardar.pack(side=tk.TOP, padx=6, pady=15)
         btnAnalizar = Button(wrapper2, text="Analizar Archivo", bg='orange2', command=analizar.lecturaPrueba2)
         btnAnalizar.pack(side=tk.TOP, padx=6, pady=15)
