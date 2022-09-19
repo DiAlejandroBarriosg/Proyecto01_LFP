@@ -2827,21 +2827,47 @@ class Principal:
                             self.estado = 4
 
 
-
-                        # if juntar == '\n<Titulo Color=':
-                        #     print('Color para Titulo')
-                        #     juntar = '='
-                        #     self.estado = 4
-
-
-
-
                     elif juntar == 'AZUL':
                         print(f'COLOR PARA TITULO {juntar}')
                         global colorTitulo
                         colorTitulo = '#0000FF'
                         juntar = ''
                         self.estado = 4
+
+                    # elif juntar == 'NEGRO':
+                    #     print(f'COLOR PARA TITULO {juntar}')
+                    #     global colorTitulo
+                    #     colorTitulo = '#000000'
+                    #     juntar = ''
+                    #     self.estado = 4
+                    #
+                    # elif juntar == 'ROJO':
+                    #     print(f'COLOR PARA TITULO {juntar}')
+                    #     global colorTitulo
+                    #     colorTitulo = '#FF0000'
+                    #     juntar = ''
+                    #     self.estado = 4
+                    #
+                    # elif juntar == 'AMARRILLO':
+                    #     print(f'COLOR PARA TITULO {juntar}')
+                    #     global colorTitulo
+                    #     colorTitulo = '#FFFF00'
+                    #     juntar = ''
+                    #     self.estado = 4
+                    #
+                    # elif juntar == 'VERDE':
+                    #     print(f'COLOR PARA TITULO {juntar}')
+                    #     global colorTitulo
+                    #     colorTitulo = '#008000'
+                    #     juntar = ''
+                    #     self.estado = 4
+                    #
+                    # elif juntar == 'VERDE':
+                    #     print(f'COLOR PARA TITULO {juntar}')
+                    #     global colorTitulo
+                    #     colorTitulo = '#800080'
+                    #     juntar = ''
+                    #     self.estado = 4
 
 
 

@@ -1,5 +1,6 @@
 <Texto>
-R.
+Realizar las operaciones básicas de suma, resta, multiplicación y
+división, así como operaciones complejas.
 </Texto>
 <Funcion = ESCRIBIR>
 <Titulo> Operaciones </Titulo>
@@ -9,7 +10,7 @@ R.
 
 
 <Estilo>
-<Titulo Color=AZUL Tamanio=16/>
+<Titulo Color=AZUL Tamanio=24/>
 </Estilo>
 <Tipo>
 <Operacion= SUMA>
