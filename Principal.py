@@ -10,12 +10,12 @@ guardarArchivo = ''
 titulo = ''
 textoGuardado = ''
 colorTitulo = ''
-tamanioFuenteTitulo = 0
-tamanioFuenteDescripcion = 0
-tamanioFuenteContenido = 0
+tamanioFuenteTitulo = ''
+tamanioFuenteDescripcion = ''
+tamanioFuenteContenido = ''
 colorDescripcion = ''
 colorContenido = ''
-tamanioDescripcion = 0
+tamanioDescripcion = ''
 
 
 
@@ -223,11 +223,7 @@ class Principal:
                             juntar = ''
                             self.estado = 4
 
-                        elif juntar == '\n</Estilo>':
-                            print('Finaliza la seleccion de estilos')
-                            print(f'{juntar}')
-                            juntar = ''
-                            self.estado = 1
+
 
 
 
@@ -2796,19 +2792,20 @@ class Principal:
                             juntar = ''
 
                         elif self.banderaTamanioDescripcion == True:
-                            tamanioFuenteTitulo = self.tamanioFuente
+                            tamanioFuenteDescripcion = self.tamanioFuente
                             juntar = ''
 
                         elif self.banderaTamanioContenido == True:
-                            tamanioFuenteTitulo = self.tamanioFuente
+                            tamanioFuenteContenido = self.tamanioFuente
                             juntar = ''
-                            self.banderaTamanioContenido = True
+                            # self.estado = 1
+                            # self.banderaTamanioContenido = True
 
                     if juntar == '/>':
                         print('Cerrando parametros de estilo')
                         juntar = ''
                         self.tamanioFuente = ''
-                        self.estado = 1
+                        self.estado = 4
                         self.banderaTamanioTitulo = False
                         self.banderaTamanioDescripcion = False
                         self.banderaTamanioContenido = False
@@ -2875,6 +2872,11 @@ class Principal:
                             juntar = ''
                             self.estado = 4
 
+                    elif juntar == '\n</Estilo>':
+                        print('Finaliza la seleccion de estilos')
+                        print(f'{juntar}')
+                        juntar = ''
+                        self.estado = 1
 
                     elif juntar == 'AZUL':
                         print(f'COLOR Será {juntar}')
@@ -3045,7 +3047,7 @@ class Principal:
         Linea = ""
         htmlparte1 = "<html><head><title>"
         htmlparte2 = "</title></head><body>"
-        htmlh1 = '<h3>'
+        htmlh1 = '<h3 style="color:'
         htmlh2C = "</h3>"
         # <h1 style="color:red;font-size:40px;">
         htmlh3 = '<h1 style="color:'
@@ -3069,11 +3071,15 @@ class Principal:
         documentohtml += htmlh3
         documentohtml += colorTitulo
         documentohtml += tamaFuente
-        documentohtml += tamanioFuenteTitulo
+        documentohtml += str(tamanioFuenteTitulo)
         documentohtml += finaFuente
         documentohtml += titulo
         documentohtml += htmlh3C
         documentohtml += htmlh1
+        documentohtml += colorDescripcion
+        documentohtml += tamaFuenteDes
+        documentohtml += tamanioFuenteDescripcion
+        documentohtml += finaDescripcion
         documentohtml += textoGuardado
         documentohtml += htmlh2C
         documentohtml += iniParrafo
