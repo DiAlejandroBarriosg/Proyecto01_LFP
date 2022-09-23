@@ -11,6 +11,11 @@ titulo = ''
 textoGuardado = ''
 colorTitulo = ''
 tamanioFuenteTitulo = 0
+tamanioFuenteDescripcion = 0
+tamanioFuenteContenido = 0
+colorDescripcion = ''
+colorContenido = ''
+tamanioDescripcion = 0
 
 
 
@@ -66,6 +71,12 @@ class Principal:
         self.titulo = ''
         self.textoGuardado = ''
         self.tamanioFuente = ''
+        self.banderaColorTitulo = False
+        self.banderaTamanioTitulo = False
+        self.banderaColorDescripcion = False
+        self.banderaTamanioDescripcion = False
+        self.banderaColorContenido = False
+        self.banderaTamanioContenido = False
 
     def ReiniciarContadores(self):
 
@@ -2776,15 +2787,35 @@ class Principal:
                         self.estado = 1
                     elif c.isdecimal():
                         global tamanioFuenteTitulo
+                        global tamanioFuenteDescripcion
+                        global tamanioFuenteContenido
                         self.tamanioFuente += c
-                        tamanioFuenteTitulo = self.tamanioFuente
-                        juntar = ''
+
+                        if self.banderaTamanioTitulo == True:
+                            tamanioFuenteTitulo = self.tamanioFuente
+                            juntar = ''
+
+                        elif self.banderaTamanioDescripcion == True:
+                            tamanioFuenteTitulo = self.tamanioFuente
+                            juntar = ''
+
+                        elif self.banderaTamanioContenido == True:
+                            tamanioFuenteTitulo = self.tamanioFuente
+                            juntar = ''
+                            self.banderaTamanioContenido = True
 
                     if juntar == '/>':
                         print('Cerrando parametros de estilo')
                         juntar = ''
                         self.tamanioFuente = ''
                         self.estado = 1
+                        self.banderaTamanioTitulo = False
+                        self.banderaTamanioDescripcion = False
+                        self.banderaTamanioContenido = False
+                        self.banderaColorContenido = False
+                        self.banderaColorDescripcion = False
+                        self.banderaColorTitulo = False
+
 
                     elif c == ' ':
                         # print(juntar)
@@ -2814,6 +2845,24 @@ class Principal:
                             print('Estilo para titulo')
                             print(f'{juntar}')
                             juntar = ''
+                            self.banderaTamanioTitulo = True
+                            self.banderaColorTitulo = True
+                            self.estado = 4
+
+                        elif juntar == '\n<Descripcion ':
+                            print('Estilo para Descripcion')
+                            print(f'{juntar}')
+                            juntar = ''
+                            self.banderaTamanioDescripcion = True
+                            self.banderaColorDescripcion = True
+                            self.estado = 4
+
+                        elif juntar == '\n<Contenido ':
+                            print('Estilo para Descripcion')
+                            print(f'{juntar}')
+                            juntar = ''
+                            self.banderaTamanioContenido = True
+                            self.banderaColorContenido = True
                             self.estado = 4
 
                     elif c == '=':
@@ -2828,46 +2877,132 @@ class Principal:
 
 
                     elif juntar == 'AZUL':
-                        print(f'COLOR PARA TITULO {juntar}')
+                        print(f'COLOR Será {juntar}')
                         global colorTitulo
-                        colorTitulo = '#0000FF'
-                        juntar = ''
-                        self.estado = 4
+                        global colorDescripcion
+                        global colorContenido
+                        if self.banderaColorTitulo == True:
+                            colorTitulo = '#0000FF'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorTitulo = False
 
-                    # elif juntar == 'NEGRO':
-                    #     print(f'COLOR PARA TITULO {juntar}')
-                    #     global colorTitulo
-                    #     colorTitulo = '#000000'
-                    #     juntar = ''
-                    #     self.estado = 4
+                        elif self.banderaColorDescripcion == True:
+                            colorDescripcion = '#0000FF'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorDescripcion = False
+
+                        elif self.banderaColorContenido == True:
+                            colorContenido = '#0000FF'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorContennido = False
+
+                    elif juntar == 'NEGRO':
+                        print(f'COLOR PARA TITULO {juntar}')
+                        # colorTitulo = '#000000'
+                        if self.banderaColorTitulo == False:
+                            colorTitulo = '#000000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorTitulo = True
+
+                        elif self.banderaColorDescripcion == False:
+                            colorDescripcion = '#000000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorDescripcion = True
+
+                        elif self.banderaColorContenido == False:
+                            colorContenido = '#000000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorContennido = True
+
+                    elif juntar == 'ROJO':
+                        print(f'COLOR PARA TITULO {juntar}')
+                        # colorTitulo = '#FF0000'
+                        if self.banderaColorTitulo == False:
+                            colorTitulo = '#FF0000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorTitulo = True
+
+                        elif self.banderaColorDescripcion == False:
+                            colorDescripcion = '#FF0000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorDescripcion = True
+
+                        elif self.banderaColorContenido == False:
+                            colorContenido = '#FF0000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorContennido = True
                     #
-                    # elif juntar == 'ROJO':
-                    #     print(f'COLOR PARA TITULO {juntar}')
-                    #     global colorTitulo
-                    #     colorTitulo = '#FF0000'
-                    #     juntar = ''
-                    #     self.estado = 4
+                    elif juntar == 'AMARRILLO':
+                        print(f'COLOR PARA TITULO {juntar}')
+                        # colorTitulo = '#FFFF00'
+                        if self.banderaColorTitulo == False:
+                            colorTitulo = '#FFFF00'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorTitulo = True
+
+                        elif self.banderaColorDescripcion == False:
+                            colorDescripcion = '#FFFF00'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorDescripcion = True
+
+                        elif self.banderaColorContenido == False:
+                            colorContenido = '#FFFF00'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorContennido = True
                     #
-                    # elif juntar == 'AMARRILLO':
-                    #     print(f'COLOR PARA TITULO {juntar}')
-                    #     global colorTitulo
-                    #     colorTitulo = '#FFFF00'
-                    #     juntar = ''
-                    #     self.estado = 4
+                    elif juntar == 'VERDE':
+                        print(f'COLOR PARA TITULO {juntar}')
+                        # colorTitulo = '#008000'
+                        if self.banderaColorTitulo == True:
+                            colorTitulo = '#008000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorTitulo = False
+
+                        elif self.banderaColorDescripcion == True:
+                            colorDescripcion = '#008000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorDescripcion = False
+
+                        elif self.banderaColorContenido == True:
+                            colorContenido = '#008000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorContennido = False
                     #
-                    # elif juntar == 'VERDE':
-                    #     print(f'COLOR PARA TITULO {juntar}')
-                    #     global colorTitulo
-                    #     colorTitulo = '#008000'
-                    #     juntar = ''
-                    #     self.estado = 4
-                    #
-                    # elif juntar == 'VERDE':
-                    #     print(f'COLOR PARA TITULO {juntar}')
-                    #     global colorTitulo
-                    #     colorTitulo = '#800080'
-                    #     juntar = ''
-                    #     self.estado = 4
+                    elif juntar == 'NARANJA':
+                        print(f'COLOR PARA TITULO {juntar}')
+                        # colorTitulo = '#ff8000'
+                        if self.banderaColorTitulo == True:
+                            colorTitulo = '#ff8000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorTitulo = False
+
+                        elif self.banderaColorDescripcion == True:
+                            colorDescripcion = '#ff8000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorDescripcion = False
+
+                        elif self.banderaColorContenido == True:
+                            colorContenido = '#ff8000'
+                            juntar = ''
+                            self.estado = 4
+                            self.banderaColorContennido = False
 
 
 
@@ -2901,6 +3036,11 @@ class Principal:
         global textoGuardado
         global colorTitulo
         global tamanioFuenteTitulo
+        global tamanioFuenteDescripcion
+        global tamanioFuenteContenido
+        global colorDescripcion
+        global colorContenido
+
         fichero = open('Texto_para_HTML.txt', encoding='utf-8')
         Linea = ""
         htmlparte1 = "<html><head><title>"
@@ -2910,9 +3050,13 @@ class Principal:
         # <h1 style="color:red;font-size:40px;">
         htmlh3 = '<h1 style="color:'
         tamaFuente = ";font-size: "
+        tamaFuenteDes = ";font-size: "
+        tamaFuenteCon = ";font-size: "
         finaFuente = 'px;">'
+        finaDescripcion = 'px;">'
+        finaContenido = 'px;">'
         htmlh3C = "</h1>"
-        iniParrafo = "<p>"
+        iniParrafo = '<p style="color:'
         cerraParrafo = "</p>"
         htmlparte3 = "</body></html>"
 
@@ -2933,6 +3077,10 @@ class Principal:
         documentohtml += textoGuardado
         documentohtml += htmlh2C
         documentohtml += iniParrafo
+        documentohtml += colorContenido
+        documentohtml += tamaFuenteCon
+        documentohtml += str(tamanioFuenteContenido)
+        documentohtml += finaContenido
         for Linea in lineas:
             documentohtml += Linea
             documentohtml += '<br>'
