@@ -31,8 +31,8 @@ división, así como operaciones complejas.
 <Numero> 7 </Numero>
 </Operacion>
 <Operacion= DIVISION>
-<Numero> 45 </Numero>
-<Numero> 9 </Numero>
+<Numero> 5 </Numero>
+<Numero> 5 </Numero>
 </Operacion>
 <Operacion= POTENCIA>
 <Numero> 2 </Numero>
@@ -65,11 +65,11 @@ división, así como operaciones complejas.
 <Numero> 3 </Numero>
 </Operacion>
 </Operacion>
+<Operacion= DIVISION>
+<Numero> 5 </Numero>
 <Operacion= RESTA>
-<Numero> 7 </Numero>
-<Operacion= SUMA>
-<Numero> 7 </Numero>
-<Numero> 2 </Numero>
+<Numero> 0 </Numero>
+<Numero> 5 </Numero>
 </Operacion>
 </Operacion>
 <Operacion= RESTA>

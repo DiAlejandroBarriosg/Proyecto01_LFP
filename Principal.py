@@ -4,6 +4,9 @@ from tkinter import *
 import tkinter as tk
 from tkinter import ttk, filedialog
 from tkinter import messagebox
+import traceback
+import linecache
+import sys
 from tkinter.filedialog import asksaveasfilename
 
 guardarArchivo = ''
@@ -16,7 +19,8 @@ tamanioFuenteContenido = ''
 colorDescripcion = ''
 colorContenido = ''
 tamanioDescripcion = ''
-
+errorDivison = ''
+errorDivisonCompleja = ''
 
 
 class Principal:
@@ -131,9 +135,11 @@ class Principal:
                     elif c == '/':
                         print('Cerrando etiqueta')
                         # break
+
                 elif self.estado == 2:
                     if str.isalpha(c):
                         self.estado = 2
+
 
                     if juntar == '\n<Funcion':
                         print('Esta es una funcion')
@@ -150,6 +156,9 @@ class Principal:
                     elif c == ' ':
                         juntar = ''
                         self.estado = 2
+                    elif c.isdigit():
+                        print(f'¡Error! se ha encontrado que "{c}" es un numero')
+                        break
 
                     elif c == '>' or '=':
                         if juntar == '<Tipo>':
@@ -685,7 +694,14 @@ class Principal:
                                     if self.banderaNumeroSeDivide == True:
                                         my_text2.insert(END, f'\n\n ¡Se detectó una Operacion Compleja!\n')
                                         my_text2.insert(END, f'\n {self.almacenoPrimeroNumero} / {self.resultadoFinal}\n')
-                                        self.almacenoPrimeroNumero /= self.resultadoFinal
+                                        if self.resultadoFinal != 0:
+                                            self.almacenoPrimeroNumero /= float(self.primerNumeroSuma)
+                                        else:
+                                            print('No se puede dividir entre 0')
+                                            global errorDivisonCompleja
+                                            global errorDivison
+                                            errorDivisonCompleja = 'Error en Division de Resta Compleja, resultado no se puede dividir entre 0'
+                                            break
                                         print(f'EL RESULTADO FINAL ES {self.resultadoFinal}')
                                         my_text2.insert(END, f'\n EL RESULTADO FINAL ES: {self.almacenoPrimeroNumero}\n')
                                         self.contadorOperadorSuma = 1
@@ -1066,7 +1082,13 @@ class Principal:
 
                                 elif self.numeroEntrada == True:
                                     my_text2.insert(END, f' / {self.primerNumeroSuma}')
-                                    self.almacenoPrimeroNumero /= float(self.primerNumeroSuma)
+
+                                    try:
+                                        self.almacenoPrimeroNumero /= float(self.primerNumeroSuma)
+                                    except ZeroDivisionError:
+                                        print(traceback.format_exc())
+                                        errorDivison = traceback.format_exc()
+
                                     print('El Resultado de la DIVISION es:', self.almacenoPrimeroNumero)
                                     my_text2.insert(END, f' = {self.almacenoPrimeroNumero}')
                                     my_text2.insert(END, f'\n {self.almacenoPrimeroNumero}\n')
@@ -1108,7 +1130,11 @@ class Principal:
                                     if self.banderaNumeroSeDivide == True and self.contadorOperadorDivision > 2:
                                         my_text2.insert(END, f'\n\n ¡Se detectó una Operacion Compleja!\n')
                                         my_text2.insert(END, f'\n {self.resultadoFinal} / {self.almacenoPrimeroNumero}\n')
-                                        self.almacenoPrimeroNumero /= self.resultadoFinal
+                                        try:
+                                            self.almacenoPrimeroNumero /= self.resultadoFinal
+                                        except ZeroDivisionError:
+                                            print(traceback.format_exc())
+                                            errorDivisonCompleja = traceback.format_exc()
                                         print(f'EL RESULTADO FINAL ES {self.resultadoFinal}')
                                         my_text2.insert(END, f'\n EL RESULTADO FINAL ES: {self.resultadoFinal}\n')
                                         self.contadorOperadorSuma = 1
@@ -3033,6 +3059,16 @@ class Principal:
         text_file2 = open('Texto_para_HTML.txt', 'w', encoding='utf-8')
         text_file2.write(my_text2.get(1.0, END))
 
+    def PrintException(self):
+        exc_type, exc_obj, tb = sys.exc_info()
+        f = tb.tb_frame
+        lineno = tb.tb_lineno
+        filename = f.f_code.co_filename
+        linecache.checkcache(filename)
+        line = linecache.getline(filename, lineno, f.f_globals)
+        print('EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
+
+
     def GenerarHTML(self):
         global titulo
         global textoGuardado
@@ -3042,6 +3078,8 @@ class Principal:
         global tamanioFuenteContenido
         global colorDescripcion
         global colorContenido
+        global errorDivison
+        global errorDivisonCompleja
 
         fichero = open('Texto_para_HTML.txt', encoding='utf-8')
         Linea = ""
@@ -3092,6 +3130,13 @@ class Principal:
             documentohtml += '<br>'
             print(Linea)
         documentohtml += cerraParrafo
+        documentohtml += '<p style="color:red;font-size:40px;">'
+        documentohtml += 'ERRORES:'
+        documentohtml += '</p>'
+        documentohtml += '<br>'
+        documentohtml += errorDivisonCompleja
+        documentohtml += '<br>'
+        documentohtml += errorDivison
         documentohtml += htmlparte3
         f = open('PaginaDinamica.html', 'w')
         f.write(documentohtml)
