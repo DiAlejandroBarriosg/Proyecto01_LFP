@@ -9,6 +9,8 @@ import linecache
 import sys
 from tkinter.filedialog import asksaveasfilename
 
+import VentanaDatos
+
 guardarArchivo = ''
 titulo = ''
 textoGuardado = ''
@@ -21,12 +23,14 @@ colorContenido = ''
 tamanioDescripcion = ''
 errorDivison = ''
 errorDivisonCompleja = ''
+errores = ''
 
 
-class Principal:
+class Principal(VentanaDatos):
     import math
 
     def __init__(self):
+
         self.contadorOperadorSuma = 0
         self.estado = 1
         self.estadoSuma = 'SUMA'
@@ -81,6 +85,7 @@ class Principal:
         self.banderaTamanioDescripcion = False
         self.banderaColorContenido = False
         self.banderaTamanioContenido = False
+        self.banderaOperacionAbierta = False
 
     def ReiniciarContadores(self):
 
@@ -94,6 +99,8 @@ class Principal:
         self.contadorOperadorCoseno = 1
         self.contadorOperadorTangete = 1
         self.contadorOperadorModulo = 1
+
+        self.banderaOperacionCerrada = False
 
     def Abrir(self):
 
@@ -117,17 +124,23 @@ class Principal:
         with open(guardarArchivo, encoding="utf8") as f:
             juntar = ''
             juntarTodo = ''
+            contadorCarracteres = 0
+            contadorSaltos = 1
             while True:
                 c = f.read(1)
+                contadorCarracteres += 1
                 juntar += c
                 juntarSinSaltos = juntar
                 juntarTodo += c
+
+                # print(f.readline())
                 if self.estado == 1:
                     if c == '<':
                         self.estado = 2
                         print('Abriendo etiqueta')
                     elif c == '\n':
                         self.estado = 1
+                        contadorSaltos += 1
                         print('Salto de linea, se regrea a estado 1')
                     elif c == ' ':
                         print('Esto es un espacio de los numeros')
@@ -135,7 +148,15 @@ class Principal:
                     elif c == '/':
                         print('Cerrando etiqueta')
                         # break
-
+                    elif c == '\t':
+                        print('tabulacion')
+                        # break
+                    elif c.isdigit():
+                        print(f'¡Error! se ha encontrado que "{c}" no corresponde a la lectura de una etiqueta')
+                        global errores
+                        errores = f'¡Error! se ha encontrado que "{c}" no corresponde a la lectura de una etiqueta. En el carracter {contadorCarracteres} en la linea {contadorSaltos}'
+                        print(f'En el carracter {contadorCarracteres} en la linea {contadorSaltos}')
+                        break
                 elif self.estado == 2:
                     if str.isalpha(c):
                         self.estado = 2
@@ -156,9 +177,12 @@ class Principal:
                     elif c == ' ':
                         juntar = ''
                         self.estado = 2
-                    elif c.isdigit():
-                        print(f'¡Error! se ha encontrado que "{c}" es un numero')
-                        break
+                    # elif c.isdigit():
+                    #     print(f'¡Error! se ha encontrado que "{c}" no corresponde a la lectura de una etiqueta')
+                    #     # global errores
+                    #     errores = f'¡Error! se ha encontrado que "{c}" no corresponde a la lectura de una etiqueta. En el carracter {contadorCarracteres} en la linea {contadorSaltos}'
+                    #     print(f'En el carracter {contadorCarracteres} en la linea {contadorSaltos}')
+                    #     break
 
                     elif c == '>' or '=':
                         if juntar == '<Tipo>':
@@ -182,7 +206,7 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
-                        elif juntar == '\n<Titulo>':
+                        elif juntar == '\n\t<Titulo>':
                             print('Esto es una etiqueta Titulo')
                             print(juntar)
                             print(f'Esto es {juntar}')
@@ -196,7 +220,7 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
-                        elif juntar == '\n<Descripcion>':
+                        elif juntar == '\n\t<Descripcion>':
                             print('Esto es una etiqueta Descripcion')
                             print(juntar)
                             print(f'Esto es {juntar}')
@@ -211,7 +235,7 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
-                        elif juntar == '\n<Contenido>':
+                        elif juntar == '\n\t<Contenido>':
                             print('Esto es una etiqueta CONTENIDO')
                             print(juntar)
                             print(f'Creando archivo de texto donde se guardarán las operaciones')
@@ -226,15 +250,17 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
-                        elif juntar == '\n\n\n<Estilo>':
+                        elif juntar == '\n<Estilo>':
                             print('Esta es un Estilo')
                             print(f'{juntar}')
                             juntar = ''
                             self.estado = 4
 
-
-
-
+                        elif c.isdigit():
+                            print(f'¡Error! se ha encontrado')
+                            errores = f'¡Error! se ha encontrado un error de escritura en alguna etiqueta. Revisar en el carracter {contadorCarracteres} en la linea {contadorSaltos}'
+                            print(f'En el carracter {contadorCarracteres} en la linea {contadorSaltos}')
+                            break
 
                         elif juntar == '\n<Operacion=':
                             print('Esto es una Operacion')
@@ -396,7 +422,7 @@ class Principal:
                             self.banderaModulo = True
                             self.contadorOperadorModulo += 1
 
-                        elif juntar == '\n<Numero>':
+                        elif juntar == '\n\t<Numero>':
                             print('Esto es un Numero')
                             print(juntar)
                             juntar = ''
@@ -481,6 +507,8 @@ class Principal:
                                         self.contadorOperadorTangete = 1
                                         self.contadorOperadorModulo = 1
                                     if self.banderaNumeroSeDivide == True:
+                                        global errorDivisonCompleja
+                                        global errorDivison
                                         my_text2.insert(END, f'\n\n ¡Se detectó una Operacion Compleja!\n')
                                         my_text2.insert(END, f'\n {self.almacenoPrimeroNumero} / {self.resultadoFinal}\n')
                                         self.almacenoPrimeroNumero /= self.resultadoFinal
@@ -643,7 +671,7 @@ class Principal:
                                 if self.numeroEntrada == False:
                                     self.almacenoPrimeroNumero = float(self.primerNumeroSuma)
                                     my_text2.insert(END, f'\n\nSe Restarán: \n\n {self.almacenoPrimeroNumero}')
-                                    print(f'Este es el primero numero a restar {self.almacenoPrimeroNumero}')
+                                    print(f'Este es el primer numero a restar {self.almacenoPrimeroNumero}')
                                     if self.resultadoFinal == False:
                                         self.resultadoFinal = self.almacenoPrimeroNumero
                                     self.primerNumeroSuma = ''
@@ -692,18 +720,15 @@ class Principal:
                                         self.contadorOperadorModulo = 1
                                         self.banderaNumeroSeSuma = False
                                     if self.banderaNumeroSeDivide == True:
+                                        if self.resultadoFinal == '0' or 0:
+                                            print('Se quizo dividir entre 0, el programa se cerró')
+                                            break
                                         my_text2.insert(END, f'\n\n ¡Se detectó una Operacion Compleja!\n')
                                         my_text2.insert(END, f'\n {self.almacenoPrimeroNumero} / {self.resultadoFinal}\n')
-                                        if self.resultadoFinal != 0:
-                                            self.almacenoPrimeroNumero /= float(self.primerNumeroSuma)
-                                        else:
-                                            print('No se puede dividir entre 0')
-                                            global errorDivisonCompleja
-                                            global errorDivison
-                                            errorDivisonCompleja = 'Error en Division de Resta Compleja, resultado no se puede dividir entre 0'
-                                            break
-                                        print(f'EL RESULTADO FINAL ES {self.resultadoFinal}')
+                                        self.almacenoPrimeroNumero /= self.resultadoFinal
+                                        print(f'EL RESULTADO FINAL ES {self.almacenoPrimeroNumero}')
                                         my_text2.insert(END, f'\n EL RESULTADO FINAL ES: {self.almacenoPrimeroNumero}\n')
+
                                         self.contadorOperadorSuma = 1
                                         self.contadorOperadorResta = 1
                                         self.contadorOperadorDivision = 1
@@ -1086,6 +1111,8 @@ class Principal:
                                     try:
                                         self.almacenoPrimeroNumero /= float(self.primerNumeroSuma)
                                     except ZeroDivisionError:
+                                        global errorDivisonCompleja
+                                        global errorDivison
                                         print(traceback.format_exc())
                                         errorDivison = traceback.format_exc()
 
@@ -2759,7 +2786,9 @@ class Principal:
                                         self.contadorOperadorCoseno = 1
                                         self.contadorOperadorTangete = 1
                                         self.contadorOperadorModulo = 1
-
+                        if self.banderaOperacionAbierta == True:
+                            print('Error de escritura')
+                            break
 
 
                 elif self.estado == 3:
@@ -2789,6 +2818,11 @@ class Principal:
                         juntar = ''
                         self.estado = 1
 
+                    else:
+                        errores = f'¡Error! se ha encontrado que "{c}" no corresponde a la lectura correcta del archivo. En el carracter {contadorCarracteres} en la linea {contadorSaltos}'
+                        print(f'En el carracter {c} {contadorCarracteres} en la linea {contadorSaltos}')
+                        break
+
                 elif self.estado == 4:
                     if str.isalpha(c):
                         self.estado = 4
@@ -2796,8 +2830,12 @@ class Principal:
                         self.estado = 4
                         print('Abriendo etiqueta')
                     elif c == '\n':
+                        contadorSaltos += 1
                         self.estado = 4
                         print('Salto de linea, se regrea a estado 4')
+                    elif c == '\t':
+                        print('tabulacion')
+                        self.estado = 4
                     elif c == '.':
                         print(juntar)
                         print('Finaliza el texto')
@@ -2825,6 +2863,7 @@ class Principal:
                             tamanioFuenteContenido = self.tamanioFuente
                             juntar = ''
                             # self.estado = 1
+
                             # self.banderaTamanioContenido = True
 
                     if juntar == '/>':
@@ -2864,29 +2903,34 @@ class Principal:
                             juntar = ''
                             self.estado = 1
 
-                        elif juntar == '\n<Titulo ':
+                        elif juntar == '\n\t<Titulo ':
                             print('Estilo para titulo')
                             print(f'{juntar}')
                             juntar = ''
                             self.banderaTamanioTitulo = True
                             self.banderaColorTitulo = True
+                            contadorSaltos += 1
                             self.estado = 4
 
-                        elif juntar == '\n<Descripcion ':
+                        elif juntar == '\n\t<Descripcion ':
                             print('Estilo para Descripcion')
                             print(f'{juntar}')
                             juntar = ''
                             self.banderaTamanioDescripcion = True
                             self.banderaColorDescripcion = True
+                            contadorSaltos += 1
                             self.estado = 4
 
-                        elif juntar == '\n<Contenido ':
+                        elif juntar == '\n\t<Contenido ':
                             print('Estilo para Descripcion')
                             print(f'{juntar}')
                             juntar = ''
                             self.banderaTamanioContenido = True
                             self.banderaColorContenido = True
+                            contadorSaltos += 1
                             self.estado = 4
+
+
 
                     elif c == '=':
                         if juntar == 'Color=':
@@ -2898,7 +2942,9 @@ class Principal:
                             juntar = ''
                             self.estado = 4
 
+
                     elif juntar == '\n</Estilo>':
+
                         print('Finaliza la seleccion de estilos')
                         print(f'{juntar}')
                         juntar = ''
@@ -3041,6 +3087,7 @@ class Principal:
                         self.estado = 1
 
 
+
                 if not c:
                     print("End of file")
                     print(juntar)
@@ -3080,6 +3127,7 @@ class Principal:
         global colorContenido
         global errorDivison
         global errorDivisonCompleja
+        global errores
 
         fichero = open('Texto_para_HTML.txt', encoding='utf-8')
         Linea = ""
@@ -3137,6 +3185,8 @@ class Principal:
         documentohtml += errorDivisonCompleja
         documentohtml += '<br>'
         documentohtml += errorDivison
+        documentohtml += '<br>'
+        documentohtml += errores
         documentohtml += htmlparte3
         f = open('PaginaDinamica.html', 'w')
         f.write(documentohtml)
@@ -3177,6 +3227,8 @@ class Principal:
         btnSalir.pack(side=tk.TOP, padx=6, pady=15)
 
 
+
+
         # lbl = Label(wrapper2, text="Eliminar curso por codigo")
         # lbl.pack(side=tk.LEFT, padx=10)
 
@@ -3190,6 +3242,23 @@ class Principal:
         # prueba = Principal()
         # prueba.lecturaPrueba2()
 
+    def nuevaVentana(self):
+        # datos = VentanaDatos()
+        nueva_ventana = Toplevel(root)
+        nueva_ventana.geometry("500x500")
+        nueva_ventana.title("Información")
+        nueva_ventana.resizable(False, False)
+        wrapper4 = LabelFrame(nueva_ventana, text="Acerca del Desarrollador")
+        wrapper4.pack(fill="both", expand="yes", padx=20, pady=10)
+        # lbl = Label(wrapper4, text="Contacto")
+        # lbl.grid(row=0, column=0, padx=5, pady=3)
+        my_text3 = Text(wrapper4, width=50, height=30, font=("Helvetica", 12))
+        my_text3.pack(pady=5)
+        # my_text3.insert(END,f'{super().__init__(self.nom)}' )
+
+
+        # btn = Button(wrapper4, text="buscar", command=conseguirCreditos)
+        # btn.pack(side=tk.LEFT, padx=6)
 
 menu = Principal()
         # menu.mainMenu()
@@ -3199,6 +3268,7 @@ analizar = Principal()
 guardar = Principal()
 guardar2 = Principal()
 html = Principal()
+ventana = Principal()
         # abrir.Abrir()
 
 wrapper1 = LabelFrame(root, text="Mostrando archivo de texto leido")
@@ -3214,6 +3284,7 @@ my_text.pack(pady=20)
 
 my_text2 = Text(wrapper3, width=60, height=40, font=("Helvetica", 12))
 my_text2.pack(pady=20)
+
 btnAbrir = Button(wrapper2, text="  Abrir Archivo  ", bg='green3', command=abrir.Abrir)
 btnAbrir.pack(side=tk.TOP, padx=6, pady=15)
 btnGuardar = Button(wrapper2, text="Guardar cambios", bg='#856ff8', command=guardar.Guardar)
@@ -3224,10 +3295,14 @@ btnErrores = Button(wrapper2, text="Guardar texto para HTML", bg='red2', command
 btnErrores.pack(side=tk.TOP, padx=6, pady=15)
 btnSalir = Button(wrapper2, text="Generar HTML", bg='yellow2', command=html.GenerarHTML)
 btnSalir.pack(side=tk.TOP, padx=6, pady=15)
+btnVentana = Button(wrapper2, text="       Ayuda       ", bg='blue2', command=ventana.nuevaVentana)
+btnVentana.pack(side=tk.TOP, padx=6, pady=15)
+
+
 
 
 root.title("Ventana Principal Diego Barrios 20190018 LFP A+")
-root.geometry("1300x700")
+root.geometry("1300x750")
 root.mainloop()
 
         # prueba = Principal()

@@ -30,8 +30,8 @@ Se Multiplicarán:
 
 Se Dividirán: 
 
- 0.0 / 0 = 0.0
- 0.0
+ 5.0 / 5 = 1.0
+ 1.0
 
 ----------------------Se Finalizó una Operación--------------------------
 
@@ -124,15 +124,66 @@ Se sumarán:
 
 Se Dividirán: 
 
- 0.0
+ 8.0
 ----------------------Se Realizará una Operación----------------------
 
 Se Restarán: 
 
- 0.0 - 5 = -5.0
- -5.0
+ 1.0 - 5 = -4.0
+ -4.0
 
  ¡Se detectó una Operacion Compleja!
 
- -5.0 / 0.0
+ -4.0 / 8.0
 
+ EL RESULTADO FINAL ES: -0.5
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se Restarán: 
+
+ 10.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 7.0 + 2 = 9.0
+ 9.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 10.0 - 9.0
+
+ EL RESULTADO FINAL ES: 1.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 5.0
+----------------------Se Realizará una Operación----------------------
+
+Se sumarán: 
+
+ 38.0 + 7 = 45.0
+ 45.0
+
+ ¡Se detectó una Operacion Compleja!
+
+ 5.0 + 45.0
+
+ EL RESULTADO FINAL ES: 50.0
+
+----------------------Se Finalizó una Operación--------------------------
+
+----------------------Se Finalizó una Operación--------------------------
+
+Finalizó la lectura

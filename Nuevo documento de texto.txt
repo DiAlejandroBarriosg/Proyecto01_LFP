@@ -3,87 +3,85 @@ Realizar las operaciones básicas de suma, resta, multiplicación y
 división, así como operaciones complejas.
 </Texto>
 <Funcion = ESCRIBIR>
-<Titulo> Operaciones </Titulo>
-<Descripcion> [TEXTO] </Descripcion>
-<Contenido> [TIPO] </Contenido>
+	<Titulo> Operaciones </Titulo>
+	<Descripcion> [TEXTO] </Descripcion>
+	<Contenido> [TIPO] </Contenido>
 </Funcion>
-
-
 <Estilo>
-<Titulo Color=AZUL Tamanio=30/>
-<Descripcion Color=VERDE Tamanio=20/>
-<Contenido Color=NARANJA Tamanio=20/>
+	<Titulo Color=AZUL Tamanio=30/>
+	<Descripcion Color=VERDE Tamanio=20/>
+	<Contenido Color=NARANJA Tamanio=20/>
 </Estilo>
 <Tipo>
 <Operacion= SUMA>
-<Numero> 4.5 </Numero>
-<Numero> 5.32 </Numero>
-<Numero> 5.32 </Numero>
-<Numero> 30 </Numero>
+	<Numero> 4.5 </Numero>
+	<Numero> 5.32 </Numero>
+	<Numero> 5.32 </Numero>
+	<Numero> 30 </Numero>
 </Operacion>
 <Operacion= RESTA>
-<Numero> 84 </Numero>
-<Numero> 33.7 </Numero>
-<Numero> 100 </Numero>
+	<Numero> 84 </Numero>
+	<Numero> 33.7 </Numero>
+	<Numero> 100 </Numero>
 </Operacion>
 <Operacion= MULTIPLICACION>
-<Numero> 5 </Numero>
-<Numero> 7 </Numero>
+	<Numero> 5 </Numero>
+	<Numero> 7 </Numero>
 </Operacion>
 <Operacion= DIVISION>
-<Numero> 5 </Numero>
-<Numero> 5 </Numero>
+	<Numero> 5 </Numero>
+	<Numero> 5 </Numero>
 </Operacion>
 <Operacion= POTENCIA>
-<Numero> 2 </Numero>
-<Numero> 3 </Numero>
+	<Numero> 2 </Numero>
+	<Numero> 3 </Numero>
 </Operacion>
 <Operacion= RAIZ>
-<Numero> 9 </Numero>
+	<Numero> 9 </Numero>
 </Operacion>
 <Operacion= INVERSO>
-<Numero> 38 </Numero>
-<Numero> 97 </Numero>
+	<Numero> 38 </Numero>
+	<Numero> 97 </Numero>
 </Operacion>
 <Operacion= SENO>
-<Numero> 5 </Numero>
+	<Numero> 5 </Numero>
 </Operacion>
 <Operacion= COSENO>
-<Numero> 5 </Numero>
+	<Numero> 5 </Numero>
 </Operacion>
 <Operacion= TANGENTE>
-<Numero> 5 </Numero>
+	<Numero> 5 </Numero>
 </Operacion>
 <Operacion= MODULO>
-<Numero> 7 </Numero>
-<Numero> 2 </Numero>
+	<Numero> 7 </Numero>
+	<Numero> 2 </Numero>
 </Operacion>
 <Operacion= SUMA>
-<Numero> 10 </Numero>
+	<Numero> 10 </Numero>
 <Operacion= SUMA>
-<Numero> 7 </Numero>
-<Numero> 3 </Numero>
+	<Numero> 7 </Numero>
+	<Numero> 3 </Numero>
 </Operacion>
 </Operacion>
 <Operacion= DIVISION>
-<Numero> 5 </Numero>
+	<Numero> 8 </Numero>
 <Operacion= RESTA>
-<Numero> 0 </Numero>
-<Numero> 5 </Numero>
+	<Numero> 1 </Numero>
+	<Numero> 5 </Numero>
 </Operacion>
 </Operacion>
 <Operacion= RESTA>
-<Numero> 10 </Numero>
+	<Numero> 10 </Numero>
 <Operacion= SUMA>
-<Numero> 7 </Numero>
-<Numero> 2 </Numero>
+	<Numero> 7 </Numero>
+	<Numero> 2 </Numero>
 </Operacion>
 </Operacion>
 <Operacion= SUMA>
-<Numero> 5 </Numero>
+	<Numero> 5 </Numero>
 <Operacion= SUMA>
-<Numero> 38 </Numero>
-<Numero> 7 </Numero>
+	<Numero> 38 </Numero>
+	<Numero> 7 </Numero>
 </Operacion>
 </Operacion>
 </Tipo>
