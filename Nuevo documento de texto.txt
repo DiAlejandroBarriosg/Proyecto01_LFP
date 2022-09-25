@@ -14,13 +14,13 @@ división, así como operaciones complejas.
 </Estilo>
 <Tipo>
 <Operacion= SUMA>
-	<Numero> 4.5 </Numero>
+	<Numero> 55 </Numero>
 	<Numero> 5.32 </Numero>
 	<Numero> 5.32 </Numero>
 	<Numero> 30 </Numero>
 </Operacion>
 <Operacion= RESTA>
-	<Numero> 84 </Numero>
+	<Numero> 44 </Numero>
 	<Numero> 33.7 </Numero>
 	<Numero> 100 </Numero>
 </Operacion>
@@ -80,11 +80,22 @@ división, así como operaciones complejas.
 <Operacion= SUMA>
 	<Numero> 5 </Numero>
 <Operacion= SUMA>
-	<Numero> 38 </Numero>
+	<Numero> 50 </Numero>
 	<Numero> 7 </Numero>
 </Operacion>
 </Operacion>
 </Tipo>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
