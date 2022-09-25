@@ -266,7 +266,7 @@ class Principal(VentanaDatos):
                                                      'Posiblemente se deba a un error en la escritura de una etiqueta, verifique su archivo')
                                 break
 
-                            elif juntar == '\n<Operacion=':
+                            elif juntar == '\n\t<Operacion=':
                                 print('Esto es una Operacion')
                                 print(juntar)
                                 juntar = ''
@@ -289,7 +289,7 @@ class Principal(VentanaDatos):
 
                                 self.estado = 2
 
-                            elif juntar == '\n</Operacion>':
+                            elif juntar == '\n\t</Operacion>':
                                 print('Finaliza una operacion')
                                 print(juntar)
                                 juntar = ''
@@ -426,7 +426,7 @@ class Principal(VentanaDatos):
                                 self.banderaModulo = True
                                 self.contadorOperadorModulo += 1
 
-                            elif juntar == '\n\t<Numero>':
+                            elif juntar == '\n\t\t<Numero>':
                                 print('Esto es un Numero')
                                 print(juntar)
                                 juntar = ''
@@ -2849,6 +2849,7 @@ class Principal(VentanaDatos):
                             global textoGuardado
                             textoGuardado = self.textoGuardado
                             juntar = ''
+                            self.tamanioFuente = ''
                             self.estado = 1
                         elif c.isdecimal():
                             global tamanioFuenteTitulo
@@ -2908,7 +2909,7 @@ class Principal(VentanaDatos):
                                 juntar = ''
                                 self.estado = 1
 
-                            elif juntar == '\n\t<Titulo ':
+                            elif juntar == '\n\t\t<Titulo ':
                                 print('Estilo para titulo')
                                 print(f'{juntar}')
                                 juntar = ''
@@ -2917,7 +2918,7 @@ class Principal(VentanaDatos):
                                 contadorSaltos += 1
                                 self.estado = 4
 
-                            elif juntar == '\n\t<Descripcion ':
+                            elif juntar == '\n\t\t<Descripcion ':
                                 print('Estilo para Descripcion')
                                 print(f'{juntar}')
                                 juntar = ''
@@ -2926,7 +2927,7 @@ class Principal(VentanaDatos):
                                 contadorSaltos += 1
                                 self.estado = 4
 
-                            elif juntar == '\n\t<Contenido ':
+                            elif juntar == '\n\t\t<Contenido ':
                                 print('Estilo para Descripcion')
                                 print(f'{juntar}')
                                 juntar = ''
@@ -3002,44 +3003,44 @@ class Principal(VentanaDatos):
                         elif juntar == 'ROJO':
                             print(f'COLOR PARA TITULO {juntar}')
                             # colorTitulo = '#FF0000'
-                            if self.banderaColorTitulo == False:
+                            if self.banderaColorTitulo == True:
                                 colorTitulo = '#FF0000'
                                 juntar = ''
                                 self.estado = 4
-                                self.banderaColorTitulo = True
+                                self.banderaColorTitulo = False
 
-                            elif self.banderaColorDescripcion == False:
+                            elif self.banderaColorDescripcion == True:
                                 colorDescripcion = '#FF0000'
                                 juntar = ''
                                 self.estado = 4
-                                self.banderaColorDescripcion = True
+                                self.banderaColorDescripcion = False
 
-                            elif self.banderaColorContenido == False:
+                            elif self.banderaColorContenido == True:
                                 colorContenido = '#FF0000'
                                 juntar = ''
                                 self.estado = 4
-                                self.banderaColorContennido = True
+                                self.banderaColorContennido = False
                         #
                         elif juntar == 'AMARRILLO':
                             print(f'COLOR PARA TITULO {juntar}')
                             # colorTitulo = '#FFFF00'
-                            if self.banderaColorTitulo == False:
+                            if self.banderaColorTitulo == True:
                                 colorTitulo = '#FFFF00'
                                 juntar = ''
                                 self.estado = 4
-                                self.banderaColorTitulo = True
+                                self.banderaColorTitulo = False
 
-                            elif self.banderaColorDescripcion == False:
+                            elif self.banderaColorDescripcion == True:
                                 colorDescripcion = '#FFFF00'
                                 juntar = ''
                                 self.estado = 4
-                                self.banderaColorDescripcion = True
+                                self.banderaColorDescripcion = False
 
-                            elif self.banderaColorContenido == False:
+                            elif self.banderaColorContenido == True:
                                 colorContenido = '#FFFF00'
                                 juntar = ''
                                 self.estado = 4
-                                self.banderaColorContennido = True
+                                self.banderaColorContennido = False
                         #
                         elif juntar == 'VERDE':
                             print(f'COLOR PARA TITULO {juntar}')
