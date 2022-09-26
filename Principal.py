@@ -86,6 +86,7 @@ class Principal(VentanaDatos):
         self.banderaTamanioContenido = False
         self.banderaOperacionAbierta = False
 
+    #Reinicia contadores de las operaciones para poder ejecutar sin limites
     def ReiniciarContadores(self):
 
         self.contadorOperadorSuma = 1
@@ -100,7 +101,7 @@ class Principal(VentanaDatos):
         self.contadorOperadorModulo = 1
 
         self.banderaOperacionCerrada = False
-
+    #Abre el archivo txt para su lectura
     def Abrir(self):
 
         try:
@@ -117,7 +118,7 @@ class Principal(VentanaDatos):
         except IOError:
             messagebox.showerror('ERROR', 'ERROR EN LA CARGA DEL ARCHIVO')
 
-
+    #Automata
     def lecturaPrueba2(self):
         try:
             with open(guardarArchivo, encoding="utf8") as f:
@@ -3103,7 +3104,7 @@ class Principal(VentanaDatos):
     # except IOError:
     #     messagebox.showerror('ERROR', 'ERROR EN LA CARGA DEL ARCHIVO')
 
-
+    #Guarda los cambios efectuados en el archivo txt leido dentro del programa
     def Guardar(self):
         try:
             text_file = open(guardarArchivo, 'w', encoding='utf-8')
@@ -3111,11 +3112,12 @@ class Principal(VentanaDatos):
             messagebox.showinfo('Guardar Cambios', '¡Se guardaron los cambios!')
         except IOError:
             messagebox.showerror('ERROR', 'No hay archivo seleccionado')
+    #Guarda los datos del textbox derecho en un archivo txt nuevo para poder generar el HTML
     def Guardar2(self):
         messagebox.showinfo('Guardar Texto para HTML', '¡Se guardaron con exito los datos en archivo txt!\nGenere su HTML')
         text_file2 = open('Texto_para_HTML.txt', 'w', encoding='utf-8')
         text_file2.write(my_text2.get(1.0, END))
-
+    #Impresion de errores
     def PrintException(self):
         exc_type, exc_obj, tb = sys.exc_info()
         f = tb.tb_frame
@@ -3125,7 +3127,7 @@ class Principal(VentanaDatos):
         line = linecache.getline(filename, lineno, f.f_globals)
         print('EXCEPTION IN ({}, LINE {} "{}"): {}'.format(filename, lineno, line.strip(), exc_obj))
 
-
+    #Genera el HTML en la carpeta del proyecto
     def GenerarHTML(self):
         global titulo
         global textoGuardado
@@ -3253,6 +3255,7 @@ class Principal(VentanaDatos):
         # prueba = Principal()
         # prueba.lecturaPrueba2()
 
+    #Crea una nueva ventana con los datos de la clase VentanaDatos
     def nuevaVentana(self):
         datos = VentanaDatos('Diego Alejandro', 'Barrios Gomez', '201900158', 'Proyecto #2', '25/09/2022', 'Guatemala', 'Desarrollado',
                              '343')
